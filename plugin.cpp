@@ -228,7 +228,7 @@ void FollowFlee::neighbourBD(quint32 agentsToReplace)
         }
 
         Node tgt;
-        if (freeCells.empty()) {
+        if (freeCells.empty()) { // no space
             tgt = selectEmptyCell(); // random
         } else {
             tgt = freeCells.at(prg()->uniform(freeCells.size()-1));
