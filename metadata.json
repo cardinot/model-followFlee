@@ -1,0 +1,24 @@
+{
+  "type": "model",
+  "uid": "followFlee",
+  "version": 1,
+  "title": "Follow Flee",
+  "author": "Evoplex Team",
+  "description": "A nice description here!",
+
+  "pluginAttributesScope": [
+    {"repMode": "string{simpleBD,neighbourBD,evolutionary}"},
+    {"repRate": "double[0.05,0.35]"},
+    {"stepsPerGen": "int[5,35]"},
+    {"crossover": "double[0,1]"},
+    {"mutation": "double[0,1]"}
+  ],
+
+  "nodeAttributesScope": [
+    {"strategy": "int{0,1,2}"},
+    {"actions": "int[0,255]"},
+    {"score": "int[0,max]"}
+  ],
+
+  "supportedGraphs": ["squareGrid","edgesFromFile"]
+}
