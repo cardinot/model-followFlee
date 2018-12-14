@@ -3,7 +3,7 @@
 #ifndef FOLLOWFLEE_H
 #define FOLLOWFLEE_H
 
-#include <unordered_map>
+#include <map>
 #include <plugininterface.h>
 
 namespace evoplex {
@@ -171,7 +171,7 @@ private:
     double m_mutation;
 
     std::vector<Node> m_agents; // the cells with live agents, ie, strategy=[1,2]
-    std::unordered_map<int, Node> m_emptyCells; // the empty cells
+    std::map<int, Node> m_emptyCells; // the empty cells
 
 
 };

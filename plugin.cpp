@@ -23,7 +23,6 @@ void FollowFlee::beforeLoop()
     m_agents.clear();
     m_emptyCells.clear();
     m_agents.reserve(nodes().size());
-    m_emptyCells.reserve(nodes().size());
 
     // Find the non-empty nodes (agents)
     for (Node node : nodes()) {
@@ -40,6 +39,12 @@ bool FollowFlee::algorithmStep()
     if (m_agents.empty()) {
         return true; // nothing to do
     }
+
+    // sort agents by id
+    // it's important to ensure the same initial condition before shuffling
+    // otherwise, the play and step-by-step buttons will lead to different outputs
+    std::sort(m_agents.begin(), m_agents.end(),
+        [](Node i,Node j) { return i.id() <  j.id(); });
 
     // shuffle the vector of ids
     Utils::shuffle(m_agents, prg());
