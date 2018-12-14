@@ -7,11 +7,9 @@
   "description": "A nice description here!",
 
   "pluginAttributesScope": [
-    {"repMode": "string{simpleBD,neighbourBD,evolutionary}"},
+    {"repMode": "string{simpleBD,neighbourBD}"},
     {"repRate": "double[0.05,0.35]"},
-    {"stepsPerGen": "int[5,35]"},
-    {"crossover": "double[0,1]"},
-    {"mutation": "double[0,1]"}
+    {"stepsPerGen": "int[5,35]"}
   ],
 
   "nodeAttributesScope": [

@@ -10,34 +10,24 @@ namespace evoplex {
 class FollowFlee: public AbstractModel
 {
 public:
-    /** [OPTIONAL]
+    /**
      * @brief Initializes the plugin.
      * This method is called when the plugin is created and
-     * is mainly used to validate inputs and set the environment.
-     * The default implementation does nothing.
+     * is used to get the user inputs.
      * @return true if successful
      */
     bool init() override;
 
-    /** [OPTIONAL]
+    /**
      * @brief It is executed before the algorithmStep() loop.
-     * The default implementation of this function does nothing.
      */
     void beforeLoop() override;
 
-    /** [MANDATORY]
-     * @brief It is executed in a loop and must contain all the logic to perform ONE step.
+    /**
+     * @brief It is executed in a loop and contains all the logic to perform ONE step.
      * @returns true if algorithm is good for another step or false to stop asap.
      */
     bool algorithmStep() override;
-
-    /** [OPTIONAL]
-     * @brief It is executed after the algorithmStep() loop ends.
-     * The default implementation of this function does nothing.
-     */
-    //void afterLoop() override;
-
-
 
 private:
     /**
@@ -48,7 +38,7 @@ private:
     /**
      * The replacement modes implemented in the model (metadata.json)
      */
-    enum RepMode { SimpleBD, NeighbourBD, Evolutionary };
+    enum RepMode { SimpleBD, NeighbourBD };
 
     /**
      * A convenient struct used to calculate and determine the move performed by an agent.
@@ -167,8 +157,6 @@ private:
     RepMode m_repMode;  // replacement mode
     double m_repRate;   // replacement rate
     int m_stepsPerGen;
-    double m_crossover;
-    double m_mutation;
 
     std::vector<Node> m_agents; // the cells with live agents, ie, strategy=[1,2]
     std::map<int, Node> m_emptyCells; // the empty cells

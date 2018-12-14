@@ -9,13 +9,10 @@ namespace evoplex {
 bool FollowFlee::init()
 {
     m_repMode = repModeFromString(attr("repMode", "").toString());
-    m_repRate = attr("repRate", -1).toDouble();
+    m_repRate = attr("repRate", -1.0).toDouble();
     m_stepsPerGen = attr("stepsPerGen", -1).toInt();
-    m_crossover = attr("crossover", -1).toDouble();
-    m_mutation = attr("mutation", -1).toDouble();
 
-    return m_repRate > -1 && m_stepsPerGen > -1 &&
-           m_crossover > -1 && m_mutation > -1;
+    return m_repRate > -1 && m_stepsPerGen > -1;
 }
 
 void FollowFlee::beforeLoop()
@@ -69,16 +66,12 @@ bool FollowFlee::algorithmStep()
     // replacement phase; prepares the next generation
     auto agentsToReplace = static_cast<quint32>(floor(m_agents.size() * m_repRate));
     if (agentsToReplace > 0) {
-        switch (m_repMode) {
-        case SimpleBD:
+        if (m_repMode == SimpleBD) {
             simpleBD(agentsToReplace);
-            break;
-        case NeighbourBD:
+        } else if (m_repMode == NeighbourBD) {
             neighbourBD(agentsToReplace);
-            break;
-        case Evolutionary:
-            // TO DO
-            break;
+        } else {
+            qFatal("the replacement mode is invalid!");
         }
     }
 
@@ -377,7 +370,6 @@ FollowFlee::RepMode FollowFlee::repModeFromString(const QString& s)
 {
     if (s == "simpleBD") return SimpleBD;
     if (s == "neighbourBD") return NeighbourBD;
-    if (s == "evolutionary") return Evolutionary;
     qFatal("the replacement mode is invalid!");
 }
 
